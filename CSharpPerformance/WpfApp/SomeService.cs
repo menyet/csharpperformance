@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace WpfApp
@@ -9,6 +10,11 @@ namespace WpfApp
         {
             return Task.Run(() =>
                 Application.Current.Dispatcher.Invoke(() => MessageBox.Show("Hello!")));
+        }
+
+        public Task ReadData()
+        {
+            return Task.Delay(TimeSpan.FromSeconds(120));
         }
     }
 }
