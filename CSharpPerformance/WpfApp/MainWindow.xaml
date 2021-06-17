@@ -50,19 +50,54 @@
             </TabItem>
 
             <TabItem Header="Reactive 1">
-                <DockPanel>
+                <DockPanel LastChildFill="True">
 
-                    <UniformGrid Columns="3" DockPanel.Dock="Top">
-                        <Button Command="{Binding CpuBoundCommand}">CPU Bound</Button>
-                        <Button Command="{Binding IoBoundCommand}">IO</Button>
-                        <Button Command="{Binding DeadlockCommand}">Deadlock</Button>
+                    <UniformGrid DockPanel.Dock="Top" Columns="2">
+                        <Button Command="{Binding ReactiveViewModel.GenerateValue}"></Button>
+                        <ToggleButton DockPanel.Dock="Top" IsChecked="{Binding ReactiveViewModel.IsSubscribed}">Subscription active</ToggleButton>
                     </UniformGrid>
 
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <Button Command="{Binding Command2}">Events</Button>
-                    </StackPanel>
+                    
+
+                    <ListBox ItemsSource="{Binding ReactiveViewModel.Values}">
+
+                    </ListBox>
                 </DockPanel>
             </TabItem>
+
+            <TabItem Header="Reactive 1">
+                <DockPanel LastChildFill="True">
+
+                    <UniformGrid DockPanel.Dock="Top" Columns="2">
+                        <Button Command="{Binding ReactiveViewModel.GenerateValue}"></Button>
+                        <ToggleButton DockPanel.Dock="Top" IsChecked="{Binding ReactiveViewModel.IsSubscribed}">Subscription active</ToggleButton>
+                    </UniformGrid>
+
+
+
+                    <ListBox ItemsSource="{Binding ReactiveViewModel.Values}">
+
+                    </ListBox>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Memory leak">
+                <DockPanel LastChildFill="True">
+
+                    <UniformGrid DockPanel.Dock="Top" Columns="2">
+                        <ComboBox ItemsSource="{Binding MemoryLeakViewModel.Channels}" SelectedValue="{Binding MemoryLeakViewModel.SelectedChannel}"></ComboBox>
+                    </UniformGrid>
+
+                    <ItemsControl ItemsSource="{Binding MemoryLeakViewModel.Ticks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:TickViewModel}">
+                                <TextBlock Text="{Binding Value}"/> 
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DockPanel>
+            </TabItem>
+
         </TabControl>
 
 

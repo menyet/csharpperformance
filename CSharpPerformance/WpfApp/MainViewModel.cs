@@ -14,6 +14,9 @@ namespace WpfApp
 
         public MainViewModel(ISomeService service)
         {
+            ReactiveViewModel = new ReactiveViewModel();
+            MemoryLeakViewModel = new MemoryLeakViewModel();
+
             _service = service;
             DeadlockCommand = new RelayCommand(LockingOperation);
 
@@ -23,10 +26,14 @@ namespace WpfApp
 
             Command2 = new RelayCommand(() =>
             {
-                
+
 
             });
         }
+
+        public ReactiveViewModel ReactiveViewModel { get; }
+
+        public MemoryLeakViewModel MemoryLeakViewModel { get; set; }
 
         public ICommand Command2 { get; }
 
@@ -81,5 +88,5 @@ namespace WpfApp
         }
     }
 
-    
+
 }
