@@ -8,13 +8,40 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    d:DataContext="{d:DesignInstance local:MainViewModel, IsDesignTimeCreatable=False}"
     mc:Ignorable="d">
     <DockPanel>
+        <Border Height="200" Width="200" DockPanel.Dock="Top">
+            <Border x:Name="rect1" RenderTransformOrigin="0.5, 0.5" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green">
+                <Border.RenderTransform>
+                    <!-- giving the transform a name tells the framework not to freeze it -->
+                    <RotateTransform x:Name="noFreeze" />
+                </Border.RenderTransform>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                    To="-360" Duration="0:0:5" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+
+        </Border>
+        <UniformGrid Columns="3" DockPanel.Dock="Top">
+            <Button Command="{Binding CpuBoundCommand}">CPU Bound</Button>
+            <Button Command="{Binding IoBoundCommand}">IO</Button>
+            <Button Command="{Binding DeadlockCommand}">Deadlock</Button>
+        </UniformGrid>
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Command="{Binding Command}">Command</Button>
             <Button Command="{Binding Command2}">Events</Button>
         </StackPanel>
+
+
 
     </DockPanel>
 </Window>
