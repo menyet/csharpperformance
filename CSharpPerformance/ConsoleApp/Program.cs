@@ -1,8 +1,22 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 
 namespace ConsoleApp
 {
+    class Foo
+    {
+        public Foo()
+        {
+            Console.WriteLine("Foo created");
+        }
+
+        ~Foo()
+        {
+            Console.WriteLine("Foo killed");
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -12,6 +26,7 @@ namespace ConsoleApp
                 Console.Clear();
 
                 Console.WriteLine("(1) Event handlers");
+                Console.WriteLine("(2) Finalizers");
                 Console.WriteLine("(q) Quit");
 
                 var cmd = Console.ReadKey();
@@ -20,8 +35,20 @@ namespace ConsoleApp
                 {
                     case '1': EvendHandlers();
                         break;
+                    case '2':
+                        Finalizers();
+                        break;
                     case 'q': return;
                 }
+            }
+        }
+
+        private static void Finalizers()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                var f = new Foo();
+                Thread.Sleep(100);
             }
         }
 
