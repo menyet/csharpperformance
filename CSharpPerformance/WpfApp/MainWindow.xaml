@@ -10,7 +10,7 @@
     Height="450"
     d:DataContext="{d:DesignInstance local:MainViewModel, IsDesignTimeCreatable=False}"
     mc:Ignorable="d">
-    <DockPanel>
+    <DockPanel LastChildFill="True">
         <Border Height="200" Width="200" DockPanel.Dock="Top">
             <Border x:Name="rect1" RenderTransformOrigin="0.5, 0.5" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green">
                 <Border.RenderTransform>
@@ -31,16 +31,39 @@
             </Border>
 
         </Border>
-        <UniformGrid Columns="3" DockPanel.Dock="Top">
-            <Button Command="{Binding CpuBoundCommand}">CPU Bound</Button>
-            <Button Command="{Binding IoBoundCommand}">IO</Button>
-            <Button Command="{Binding DeadlockCommand}">Deadlock</Button>
-        </UniformGrid>
 
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Command="{Binding Command2}">Events</Button>
-        </StackPanel>
+        <TabControl>
 
+            <TabItem Header="Basic">
+                <DockPanel>
+
+                    <UniformGrid Columns="3" DockPanel.Dock="Top">
+                        <Button Command="{Binding CpuBoundCommand}">CPU Bound</Button>
+                        <Button Command="{Binding IoBoundCommand}">IO</Button>
+                        <Button Command="{Binding DeadlockCommand}">Deadlock</Button>
+                    </UniformGrid>
+
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <Button Command="{Binding Command2}">Events</Button>
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Reactive 1">
+                <DockPanel>
+
+                    <UniformGrid Columns="3" DockPanel.Dock="Top">
+                        <Button Command="{Binding CpuBoundCommand}">CPU Bound</Button>
+                        <Button Command="{Binding IoBoundCommand}">IO</Button>
+                        <Button Command="{Binding DeadlockCommand}">Deadlock</Button>
+                    </UniformGrid>
+
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <Button Command="{Binding Command2}">Events</Button>
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
 
 
     </DockPanel>
