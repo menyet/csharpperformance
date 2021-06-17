@@ -28,9 +28,13 @@ namespace ConsoleApp
         private static void EvendHandlers()
         {
             new EventManager().Fill(1000);
+            Console.ReadLine();
             new EventManager().Fill(10000);
+            Console.ReadLine();
             new EventManager().Fill(100000);
+            Console.ReadLine();
             new EventManager().Fill(1000000);
+            Console.ReadLine();
         }
     }
 
